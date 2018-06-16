@@ -1,18 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { searchReleasesByName } from './utils/mb-api';
+
+import AlbumList from './components/AlbumList';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      releases: []
+    };
+  }
+
+  componentDidMount() {
+    searchReleasesByName('Lithium').then(releases => {
+        this.setState({
+            releases: releases
+        });
+      });
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <AlbumList releases={this.state.releases} />
       </div>
     );
   }
