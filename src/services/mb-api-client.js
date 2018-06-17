@@ -4,14 +4,13 @@ const BASE_URL = 'https://musicbrainz.org/ws/2';
 
 function searchReleasesByName(name) {
     name = escapeQuery(name);
+
     return sendSearchRequest('release', `release:${name}`).then(response => {
         return response.json();
     }).then(json => {
-        let releases = json.releases.map(releaseData => {
+        return json.releases.map(releaseData => {
             return buildRelease(releaseData);
         });
-        
-        return releases;
     })
 }
 
@@ -26,6 +25,6 @@ function sendSearchRequest(resource, query) {
     return fetch(url);
 }
 
-export {
+export default {
     searchReleasesByName
 };

@@ -1,5 +1,3 @@
-import Release from '../models/Release';
-
 export function buildRelease(mbReleaseData) {
     let mbid = mbReleaseData.id;
     let title = mbReleaseData.title;
@@ -13,5 +11,5 @@ export function buildRelease(mbReleaseData) {
     let type = mbReleaseData['release-group']['primary-type'];
     let year = mbReleaseData.date;
 
-    return new Release(mbid, title, artist, type, year);
+    return {mbid, title, artist, type, year};
 }
