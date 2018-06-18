@@ -11,7 +11,10 @@ class SearchTab extends Component {
         return (
             <div>
                 <SearchForm onSearch={this.props.searchAlbums} />
-                <AlbumList releases={this.props.albums} />
+                {this.props.albums.length === 0
+                    ? <div className="empty-library-message">Type something and click 'Search'.</div>
+                    : <AlbumList releases={this.props.albums}/>
+                }
             </div>
         );
     }

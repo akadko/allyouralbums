@@ -1,14 +1,27 @@
 import React, { Component } from 'react';
 import Album from './Album';
+import { saveAlbum, removeAlbum } from "../store/actions/albums-actions";
 
-export default class AlbumList extends Component {
+import { connect } from 'react-redux';
+
+class AlbumList extends Component {
     render() {
         return (
             <div>
-                <ul>{this.props.releases.map((album) =>
-                    <Album title={album.title} artist={album.artist} year={album.year} key={album.mbid} />
-                )}</ul>
+                <div className="row">{this.props.releases.map((album) =>
+                    <div className="col-3 my-1">
+                        <Album key={album.mbid} album={album}
+                               onSave={this.props.saveAlbum} onRemove={this.props.removeAlbum} />
+                    </div>
+                )}</div>
             </div>
         );
     }
 }
+
+const mapStateToProps = () => ({
+    saveAlbum: saveAlbum,
+    removeAlbum: removeAlbum
+});
+
+export default connect(mapStateToProps, { saveAlbum, removeAlbum })(AlbumList);

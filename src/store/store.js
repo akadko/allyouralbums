@@ -5,7 +5,7 @@ import rootReducer from './reducers';
 const initialState = {
     searchTerm: '',
     searchResults: [],
-    albumsFromLibrary: []
+    savedAlbums: []
 };
 
 const middleware = [thunk];

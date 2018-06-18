@@ -11,5 +11,5 @@ export function buildRelease(mbReleaseData) {
     let type = mbReleaseData['release-group']['primary-type'];
     let year = mbReleaseData.date;
 
-    return {mbid, title, artist, type, year};
+    return {mbid, title, artist, type, year, isSaved: false};
 }

@@ -11,6 +11,9 @@ function searchReleasesByName(name) {
 }
 
 function escapeQuery(query) {
+    let symbolsToEscape = ['+', '-', '&&', '||', '!', '(', ')', '{', '}',
+                            '[', ']', '^', '"', '~', '*', '?', ':', '\\', '/'];
+
     // @TODO: Implement real escaping
     return query;
 }
