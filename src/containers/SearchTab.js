@@ -7,21 +7,10 @@ import { connect } from 'react-redux';
 import { searchAlbums } from "../store/actions/albums-actions";
 
 class SearchTab extends Component {
-    constructor(props) {
-        super(props);
-        this.search = this.search.bind(this);
-    }
-
-    search(e) {
-        e.preventDefault();
-        let term = e.target['search-term'].value;
-        this.props.searchAlbums(term);
-    }
-
     render() {
         return (
             <div>
-                <SearchForm onSearch={this.search} />
+                <SearchForm onSearch={this.props.searchAlbums} />
                 <AlbumList releases={this.props.albums} />
             </div>
         );
@@ -29,7 +18,7 @@ class SearchTab extends Component {
 }
 
 const mapStateToProps = state => ({
-    albums: state.albums.searchResults,
+    albums: state.searchResults,
     searchAlbums: searchAlbums
 });
 

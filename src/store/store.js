@@ -1,8 +1,13 @@
-import { createStore, compose, applyMiddleware }from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
-const initialState = {};
+const initialState = {
+    searchTerm: '',
+    searchResults: [],
+    albumsFromLibrary: []
+};
+
 const middleware = [thunk];
 
 const store = createStore(

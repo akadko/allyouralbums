@@ -5,13 +5,9 @@ const BASE_URL = 'https://musicbrainz.org/ws/2';
 function searchReleasesByName(name) {
     name = escapeQuery(name);
 
-    return sendSearchRequest('release', `release:${name}`).then(response => {
-        return response.json();
-    }).then(json => {
-        return json.releases.map(releaseData => {
-            return buildRelease(releaseData);
-        });
-    })
+    return sendSearchRequest('release', `release:${name}`)
+        .then(response => response.json())
+        .then(json => json.releases.map(releaseData => buildRelease(releaseData)));
 }
 
 function escapeQuery(query) {
